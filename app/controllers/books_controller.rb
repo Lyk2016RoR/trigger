@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!, except: [:show, :index]
-	before_action :authorize_user!, only: [:edit, :update, :destroy]
-	before_action :set_book, only[:show, :update, :edit, :destroy]
+	before_action :set_book, only: [:show, :update, :edit, :destroy]
 
 	def index
 		@books = Book.all
@@ -70,10 +69,6 @@ class BooksController < ApplicationController
 
 	def set_book
 		@book = Book.find(params[:id])
-	end
-
-	def authorize_user!
-		redirect_to root_path, notice: "Not authorized!" unless @book.user_id == current_user.id
 	end
 
 	def load_form_data

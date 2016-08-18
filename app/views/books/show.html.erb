@@ -7,8 +7,8 @@ Display Book<br /><br />
 <b>Publisher:  </b><%= @book.publisher %><br />
 <b>Category: </b><%= @book.category.name %>
 
-<b>Average Rating: </b><%= @idea.average_rating %><br />
-<b>Tags: </b><%= @idea.tags.collect {|x| x.name }.join(", ")
+<b>Average Rating: </b><%= @book.average_rating %><br />
+<b>Tags: </b><%= @book.tags.collect {|x| x.name }.join(", ")
  %><br />
 
 <br /><br /><br />
