@@ -34,7 +34,7 @@ class BooksController < ApplicationController
 	end
 
 
-	def delete
+	def destroy
 
 	end
 
