@@ -7,8 +7,17 @@ Display Book<br /><br />
 <b>Publisher:  </b><%= @book.publisher %><br />
 <b>Category: </b><%= @book.category.name %>
 
+<b>Average Rating: </b><%= @idea.average_rating %><br />
+<b>Tags: </b><%= @idea.tags.collect {|x| x.name }.join(", ")
+ %><br />
+
 <br /><br /><br />
 <%= render 'votes/form' %>
+
+<% @book.voters.each do |b| %>
+  <%= b.email %><br />
+<% end %>
+
 <%= render 'comments/comment_list' %>
 <%= render 'comments/form' %>
 

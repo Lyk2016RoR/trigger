@@ -1,9 +1,9 @@
 <h1><%= @category.name %></h1>
 
-<% @category.book.each do |idea| %>
-  <b>ID </b><%= idea.id %>
+<% @category.books.each do |book| %>
+  <b>ID </b><%= book.id %>
   <b>Name </b>
-  <%= link_to book.title, book_path(book) %>
+  <%= link_to book.name, book_path(book) %>
   <b>Description </b><%= book.description %><br>
 <% end %>
 

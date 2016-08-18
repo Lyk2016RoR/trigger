@@ -1,5 +1,38 @@
-<% @books.each do |b| %>
-	<b>Book ID: </b><%= b.id %><br/>
-	<b>Book Name: </b><%= b.name %><br/>
-	<b>Book Description: </b><%= b.description %><br/><br/><br/>
-<%end%>
+<%= render 'idea_list' %>
+
+<div class="row">
+	<div class="col-md-4">
+	  <div class="panel panel-default">
+	    <div class="panel-heading"><i class="fa fa-lightbulb-o"></i> Random Books</div>
+	    <div class="list-group">
+	    	<% @random_books.each do |book| %>
+	    		<%= link_to book.name, book_path(book), class: "list-group-item" %>
+	    	<% end %>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-4">
+	  <div class="panel panel-default">
+	    <div class="panel-heading"><i class="fa fa-comments-o"></i> Son Eklenen Kitaplar</div>
+	    <div class="list-group">
+	      <a href="#" class="list-group-item">Son Kitap #1</a>
+	      <a href="#" class="list-group-item">Son Kitap #2</a>
+	      <a href="#" class="list-group-item">Son Kitap #3</a>
+	      <a href="#" class="list-group-item">Son Kitap #4</a>
+	      <a href="#" class="list-group-item">Son Kitap #5</a>
+	    </div>
+	  </div>
+	</div>
+	<div class="col-md-4">
+	  <div class="panel panel-default">
+	    <div class="panel-heading"><i class="fa fa-star-o"></i> En İyi Kitaplar</div>
+	    <div class="list-group">
+	      <a href="#" class="list-group-item">En İyi Kitap #1</a>
+	      <a href="#" class="list-group-item">En İyi Kitap #2</a>
+	      <a href="#" class="list-group-item">En İyi Kitap #3</a>
+	      <a href="#" class="list-group-item">En İyi Kitap #4</a>
+	      <a href="#" class="list-group-item">En İyi Kitap #5</a>
+	    </div>
+	  </div>
+	</div>
+</div>

@@ -7,6 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating seed data..."
 
+u = User.create(email: "admin@admin.com", password: "123456")
+
 c1 = Category.create(name: "Astrology")
 c2 = Category.create(name: "Classical")
 c3 = Category.create(name: "Computer")
@@ -25,16 +27,17 @@ a3 =Author.create(name: "Author", surname: "3", profile: "Author 3 Profile")
 a4 =Author.create(name: "Author", surname: "4", profile: "Author 4 Profile")
 a5 =Author.create(name: "Author", surname: "5", profile: "Author 5 Profile")
 
+%w{happy bad good feels science}.each { |tag| Tag.create name: tag }
 
-Book.create!(name: "Book 1", description: "Açıklama 1", published_at: 2000, publisher: "Can Kitabevi", author_id: a1.id, category: c1)
-Book.create(name: "Book 2", description: "Açıklama 2", published_at: 2001, publisher: "Can Kitabevi", author_id: a1.id, category: c2)
-Book.create(name: "Book 3", description: "Açıklama 3", published_at: 2002, publisher: "Can Kitabevi", author_id: a1.id, category: c3)
-Book.create(name: "Book 4", description: "Açıklama 4", published_at: 2003, publisher: "Can Kitabevi", author_id: a2.id, category: c4)
-Book.create(name: "Book 5", description: "Açıklama 5", published_at: 2004, publisher: "Can Kitabevi", author_id: a2.id, category: c5)
-Book.create(name: "Book 6", description: "Açıklama 6", published_at: 2005, publisher: "Can Kitabevi", author_id: a3.id, category: c6)
-Book.create(name: "Book 7", description: "Açıklama 7", published_at: 2006, publisher: "Can Kitabevi", author_id: a4.id, category: c7)
-Book.create(name: "Book 8", description: "Açıklama 8", published_at: 2007, publisher: "Can Kitabevi", author_id: a4.id, category: c8)
-Book.create(name: "Book 9", description: "Açıklama 9", published_at: 2008, publisher: "Can Kitabevi", author_id: a5.id, category: c9)
-Book.create(name: "Book 10", description: "Açıklama 10", published_at: 2009, publisher: "Can Kitabevi", author_id: a5.id, category: c10)
+Book.create!(name: "Book 1", description: "Açıklama 1", published_at: 2000, publisher: "Can Kitabevi", author_id: a1.id, category: c1, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 2", description: "Açıklama 2", published_at: 2001, publisher: "Can Kitabevi", author_id: a1.id, category: c2, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 3", description: "Açıklama 3", published_at: 2002, publisher: "Can Kitabevi", author_id: a1.id, category: c3, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 4", description: "Açıklama 4", published_at: 2003, publisher: "Can Kitabevi", author_id: a2.id, category: c4, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 5", description: "Açıklama 5", published_at: 2004, publisher: "Can Kitabevi", author_id: a2.id, category: c5, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 6", description: "Açıklama 6", published_at: 2005, publisher: "Can Kitabevi", author_id: a3.id, category: c6, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 7", description: "Açıklama 7", published_at: 2006, publisher: "Can Kitabevi", author_id: a4.id, category: c7, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 8", description: "Açıklama 8", published_at: 2007, publisher: "Can Kitabevi", author_id: a4.id, category: c8, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 9", description: "Açıklama 9", published_at: 2008, publisher: "Can Kitabevi", author_id: a5.id, category: c9, tag_ids: (1..5).to_a.sample(rand(1..5)))
+Book.create(name: "Book 10", description: "Açıklama 10", published_at: 2009, publisher: "Can Kitabevi", author_id: a5.id, category: c10, tag_ids: (1..5).to_a.sample(rand(1..5)))
 
 puts "Seed data created"

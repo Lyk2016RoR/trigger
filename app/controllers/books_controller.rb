@@ -1,18 +1,33 @@
 class BooksController < ApplicationController
 	before_action :authenticate_user!, except: [:show, :index]
 	before_action :authorize_user!, only: [:edit, :update, :destroy]
+	before_action :set_book, only[:show, :update, :edit, :destroy]
+
 	def index
 		@books = Book.all
+		@random_books = Book.random_books
 	end
+	
+	def mine
+		@books = current_user.books
+	end
+
 	def new
 		@book = Book.new
+		load_form_data
 
 	end
 	def show
-		@book = Book.find(params[:id])
+		if current_user
+			if @book.votes.where(user_id:current_user.id ).any?
+				@vote = @book.votes.where(user_id: current_user.id).first
+			else
+				@vote = @book.votes.build
+			end
+		end
 	end
 	def edit
-		@book = Book.find(params[:id])
+		load_form_data
 	end
 	def update
 		@book = Book.find(params[:id])
@@ -20,22 +35,29 @@ class BooksController < ApplicationController
 		if @book.update(book_params)
 			redirect_to book_path(@book)
 		else
+			load_form_data
 			render :edit
 		end
 
 	end
 	
 	def create
-		@book = Book.find(params[:id])
+		@book = current_user.books.new(book_params)
 
 		if @book.save
+			flash[:success] = 'İşlem başarıyla tamalandı.'
 			redirect_to book_path(@book)
+		else
+			load_form_data
+			render :new
+
 		end
 	end
 
 
 	def destroy
-
+		@book.destroy
+		redirect_to books_path, notice: "The book is deleted! "
 	end
 
 
@@ -43,7 +65,20 @@ class BooksController < ApplicationController
 
 
 	def book_params
-		params.permit(:name, :description, :published_at, :publisher)
+		params.permit(:name, :description, :published_at, :publisher, :category_id, tag_ids: [])
 	end 
+
+	def set_book
+		@book = Book.find(params[:id])
+	end
+
+	def authorize_user!
+		redirect_to root_path, notice: "Not authorized!" unless @book.user_id == current_user.id
+	end
+
+	def load_form_data
+		@categories = Category.all.collect{|c| [c.name, c.id]}
+		@tags = Tag.all
+	end
 
 end
