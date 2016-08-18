@@ -8,33 +8,9 @@ Display Book<br /><br />
 <b>Category: </b><%= @book.category.name %>
 
 <br /><br /><br />
-<div class="panel panel-default">
-  <div class="panel-heading">
-    Comments
-  </div>
-  <div class="panel-body">
-
-    <% @book.comments.each do |comment| %>
-        <small><%= comment.user.email %> says:</small>
-        <p><%= comment.body %></p>
-    <% end %>
-
-  </div>
-</div>
-
-<% if current_user.present? %>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        Send a new comment
-      </div>
-      <div class="panel-body">
-        <%= form_for [@book, @book.comments.build] do |f| %>
-            <%= f.text_area :body, rows: 5 %><br>
-            <%= f.submit 'Send' %>
-        <% end %>
-      </div>
-    </div>
-<% end %>
+<%= render 'votes/form' %>
+<%= render 'comments/comment_list' %>
+<%= render 'comments/form' %>
 
 <br/><br/>
 

@@ -1,16 +1,19 @@
 Rails.application.routes.draw do
-  get 'votes/create'
-
-  get 'votes/destroy'
-
+  devise_for :users
   root "books#index"
   
   resources :categories, only: [:show, :index]
-  devise_for :users
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :books
-  resources :authors
-  resources :comments
+
+
+  resources :books do
+    resources :comments, only: [:create, :destroy]
+    resources :votes, only: [:create, :destroy]
+    resources :authors
+  end
+
+  resources :categories, only: [:show, :index]
   end
