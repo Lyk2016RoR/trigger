@@ -1,0 +1,23 @@
+<%= form_for @book do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, placeholder: 'Name of the book', class: "form-control input-sm" %><br>
+  <br>
+  <%= f.label :description %>
+  <br>
+  <%= f.text_area :description, placeholder: "Description", rows: 10 %><br>
+  <br>
+  <%= f.label :published_at %>
+  <br>
+  <%= f.date_select :published_at, placeholder: 'date' %><br>
+  <br>
+  <%= f.label :publisher %>
+  <br>
+  <%= f.text_field :publisher, placeholder: 'Publisher' %><br>
+  <br>
+
+   <br />
+   <br />
+   <br />
+
+  <%= f.submit 'Add' %>
+<% end %>

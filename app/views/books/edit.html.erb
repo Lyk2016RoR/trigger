@@ -1,0 +1,9 @@
+<h1>Editing <%= @book.name %></h1>
+
+<% if @book.errors.any? %>
+  <h3>
+    <%= @book.errors.full_messages.join(", ") %>
+  </h3>
+<% end %>
+
+<%= render partial: "form" %>

@@ -1,0 +1,14 @@
+Display Author<br /><br />
+
+<b>ID:  </b><%= @author.id %><br />
+<b>Name:  </b><%= @author.name %><br />
+<b>Surname: </b><%= @author.surname %><br />
+<b>Profile: </b><%= @author.profile %><br />
+
+
+<br /><br /><br />
+
+
+<%= link_to "Back to idea list", authors_path %><br/>
+<%= link_to "Edit idea", edit_author_path(@author) %><br/>
+<%= link_to "Sil", author_path(@author), method: :delete %>
