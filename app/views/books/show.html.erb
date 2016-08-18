@@ -1,0 +1,18 @@
+Display Book<br /><br />
+
+<b>ID:  </b><%= @book.id %><br />
+<b>Book Name:  </b><%= @book.name %><br />
+<b>Description:  </b><%= @book.description %><br />
+<b>Published Year:  </b><%= @book.published_at %><br />
+<b>Publisher:  </b><%= @book.publisher %><br />
+
+<br /><br /><br />
+
+<br/><br/>
+
+<%= link_to "Back to Booklist", books_path %>
+
+  <%= link_to "Edit idea", edit_idea_path(@idea) %>
+  <br/>
+  <%= link_to "Sil", idea_path(@idea), method: :delete %>
+<% end %>
