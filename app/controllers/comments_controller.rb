@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
  
   def create
     @comment = @book.comments.new(comment_params)
-    
+  end  
 
   def destroy
     @comment.destroy
@@ -27,11 +27,6 @@ class CommentsController < ApplicationController
   def set_book
     @book = Book.find(params[:book_id])
   end
-
-end
-
-
-
 
 
 end
