@@ -19,7 +19,6 @@ c9 = Category.create(name: "Love")
 c10 = Category.create(name: "Religion")
 c11 = Category.create(name: "Research")
 
-
 a1 = Author.create(name: "Author", surname: "1", profile: "Author 1 Profile")
 a2 =Author.create(name: "Author", surname: "2", profile: "Author 2 Profile")
 a3 =Author.create(name: "Author", surname: "3", profile: "Author 3 Profile")
