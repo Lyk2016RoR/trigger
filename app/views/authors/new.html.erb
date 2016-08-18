@@ -1,0 +1,9 @@
+<h1>Create a new Author</h1>
+
+<% if @author.errors.any? %>
+    <h3>
+      <%= @author.errors.full_messages.join(" , ") %>
+    </h3>
+<% end %>
+
+<%= render "form" %>

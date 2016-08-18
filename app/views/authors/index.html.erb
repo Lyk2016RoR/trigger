@@ -1,0 +1,11 @@
+<% @author.each do |author| %>
+    <b>ID:</b><%= author.id %>
+    <b>Name: </b><%= link_to author.name, author_path(author) %>
+    <b>Surname: </b><%= author.surname %>
+    <b>Profile: </b><%= author.profile %>
+
+
+
+    <br><br>
+
+<% end %>

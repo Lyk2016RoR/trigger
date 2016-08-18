@@ -1,0 +1,15 @@
+<%= form_for @author do |p| %>
+    <%= p.label :name %> <br>
+    <%= p.text_field :name, placeholder: 'Name', class: "form-control input-sm" %><br>
+    <br>
+    <%= p.label :surname %>
+    <br>
+    <%= p.text_area :surname, placeholder: 'Surname' %><br>
+    <br>
+    <%= p.label :profile %>
+    <br>
+    <%= p.date_select :profile, placeholder: 'Profile' %><br>
+    <br>
+
+    <%= p.submit 'Send' %>
+<% end %>
