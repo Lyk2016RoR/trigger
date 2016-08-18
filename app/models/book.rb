@@ -18,6 +18,7 @@ class Book < ApplicationRecord
 	belongs_to :category
 	has_many :comments
 	belongs_to :user, optional: true
+	belongs_to :author
 	
 
 end
