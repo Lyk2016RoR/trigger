@@ -1,0 +1,4 @@
+ <%= form_for [@book, @book.comments.build] do |f| %>
+        <%= f.text_area :body %><br>
+        <%= f.submit 'Send' %>
+      <% end %>
