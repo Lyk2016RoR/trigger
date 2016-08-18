@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'votes/create'
+
+  get 'votes/destroy'
+
   root "books#index"
   
   resources :categories, only: [:show, :index]

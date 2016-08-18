@@ -1,5 +1,5 @@
 class AddIndexToCategoryName < ActiveRecord::Migration[5.0]
   def change
-  	add_index :categories, :title, unique: true
+  	add_index :categories, :name, unique: true
   end
 end
