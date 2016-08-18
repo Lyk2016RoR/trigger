@@ -12,6 +12,6 @@ Display Book<br /><br />
 
 <%= link_to "Back to Booklist", books_path %>
 
-  <%= link_to "Edit idea", edit_idea_path(@idea) %>
+  <%= link_to "Edit idea", edit_book_path(@book) %>
   <br/>
-  <%= link_to "Sil", idea_path(@idea), method: :delete %>
+  <%= link_to "Sil", book_path(@book), method: :delete %>
