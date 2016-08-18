@@ -1,51 +1,30 @@
 class CommentsController < ApplicationController
-     before_action :set_comment, only: [:show, :update, :edit, :destroy]
-     before_action :authenticate_user!
-     before_action :authorize_user!, only: [:destroy]
+     
+  before_action :authenticate_user!
+  before_action :set_book
 
-  def new
-    @comment=Comment.new
-
-  end
-  def index
-    @comment=Comment.all
-  end
-  def show
-
-  end
-  def edit
-    if @comment.update(comments_params)
-  redirect_to comment_path(@comment)
-  else
-
-    render :edit
-  end
-
-
-  end
-  def update
-
-  end
   def create
-    @comment =comments.new(comment_params)
+    @comment = @book.comments.new(comment_params)
+    @comment.user = current_user
+
     if @comment.save
-      flash[:success]='İşlem başarıyla tamamlandı!'
-      redirect_to comment_path(@comment)
+      redirect_to @book, notice: "Comment was saved"
     else
-      render :new
+      redirect_to @book, notice: "Comment couldn't saved"
     end
   end
 
   def destroy
-    @comment.destroy
-    redirect_to comment_path, notice: "Comment was deleted"
-
   end
 
-
   private
-  def set_comment
-    @comment=Comment.find(params[:id])
+
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
+
+  def set_book
+    @book = Book.find(params[:book_id])
   end
 
 end
