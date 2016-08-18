@@ -5,9 +5,12 @@
 	  <div class="panel panel-default">
 	    <div class="panel-heading"><i class="fa fa-lightbulb-o"></i> Random Books</div>
 	    <div class="list-group">
+	    
 	    	<% @random_books.each do |book| %>
 	    		<%= link_to book.name, book_path(book), class: "list-group-item" %>
-	    	<% end %>
+	    	<% end %>	
+	   	
+
 	    </div>
 	  </div>
 	</div>
