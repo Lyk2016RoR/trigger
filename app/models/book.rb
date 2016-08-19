@@ -18,6 +18,8 @@ class Book < ApplicationRecord
 	belongs_to :category
 	has_many :comments
 	has_and_belongs_to_many :authors
+	belongs_to :user
+
 	has_many :votes
 	has_many :voters, through: :votes, source: :user
 	has_and_belongs_to_many :tags

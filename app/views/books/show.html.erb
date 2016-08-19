@@ -10,9 +10,9 @@ Display Book<br /><br />
 <b>Average Rating: </b><%= @book.average_rating %><br />
 <b>Tags: </b><%= @book.tags.collect {|x| x.name }.join(", ")
  %><br />
-
-<br /><br /><br />
 <%= render 'votes/form' %>
+<br /><br /><br />
+
 
 <% @book.voters.each do |b| %>
   <%= b.email %><br />

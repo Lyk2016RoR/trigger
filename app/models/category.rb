@@ -5,7 +5,7 @@ class Category < ApplicationRecord
 
 	def top_books
 		books
-		.joins(:votes)
+				.joins(:votes)
 		.select("books.* , avg(votes.rating) as point")
 		.group("books.id")
 		.order("point DESC")
