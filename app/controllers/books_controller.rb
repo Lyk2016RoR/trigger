@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+	
 	before_action :authenticate_user!, except: [:show, :index]
 	before_action :set_book, only: [:show, :update, :edit, :destroy]
 
@@ -16,13 +17,22 @@ class BooksController < ApplicationController
 		load_form_data
 
 	end
+	
 	def show
-		set_book
+		if current_user
+      		if @book.votes.where(user_id: current_user.id).any?
+        		@vote = @book.votes.where(user_id: current_user.id).first
+      		else
+        	@vote = @book.votes.build
+      		end
+    	end
 	end
+
 	def edit
 		set_book
 		load_form_data
 	end
+
 	def update
 		@book = Book.find(params[:id])
 
