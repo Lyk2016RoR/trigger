@@ -9,23 +9,20 @@ class AuthorsController < ApplicationController
     @author=Author.all
   end
   def show
-
+    set_author
   end
   def edit
-    if @author.update(authors_params)
-  redirect_to author_path(@author)
-  else
-
-    render :edit
-  end
-
-
+    set_author
   end
   def update
+   set_author
+    if @author.update(author_params)
+     redirect_to author_path(@author), notice: "Author Updated"
+    end
 
   end
   def create
-    @author =authors.new(author_params)
+    @author =Authors.new(author_params)
     if @author.save
       flash[:success]='İşlem başarıyla tamamlandı!'
       redirect_to author_path(@author)
@@ -35,6 +32,7 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
+    set_author
     @author.destroy
     redirect_to author_path, notice: "Author was deleted"
 
@@ -48,6 +46,9 @@ class AuthorsController < ApplicationController
 
   def author_params
     params.require(:author).permit(:name, :surname, :profile)
+  end
+  def set_author
+    @author = Author.find(params[:id])
   end
 
 end

@@ -8,41 +8,30 @@ Display Book<br /><br />
 <b>Category: </b><%= @book.category.name %>
 
 <br /><br /><br />
-<div class="panel panel-default">
-  <div class="panel-heading">
-    Comments
-  </div>
-  <div class="panel-body">
+ 
 
-    <% @book.comments.each do |comment| %>
-        <small><%= comment.user.email %> says:</small>
-        <p><%= comment.body %></p>
-    <% end %>
+<% @book.comments.each do |comment| %>
+  <small><%= comment.user.email %> says:</small>
+    <p><%= comment.body %></p>
+<% end %>
 
-  </div>
-</div>
+
 
 <% if current_user.present? %>
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        Send a new comment
-      </div>
-      <div class="panel-body">
-        <%= form_for [@book, @book.comments.build] do |f| %>
-            <%= f.text_area :body, rows: 5 %><br>
-            <%= f.submit 'Send' %>
-        <% end %>
-      </div>
-    </div>
+   
+Send a new comment
+     
+
+
 <% end %>
 
-<br/><br/>
+<br/>
 
 <%= link_to "Back to Booklist", books_path %>
-
 <% if current_user.present? and current_user.id == @book.user_id %>
-      <br/>
-      <%= link_to "Edit idea", edit_book_path(@book) %>
-      <br/>
-      <%= link_to "Sil", book_path(@book), method: :delete %>
+  <br/>
+  <%= link_to "Edit book",edit_book_path(@book) %>
+  <br/>
+  <%= link_to "Sil", book_path(@book), method: :delete %>
 <% end %>
+
