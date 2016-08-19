@@ -3,5 +3,5 @@ class Author < ApplicationRecord
   validates :surname, presence: true
   validates :profile, presence: true
 
-  has_many :books
+  has_and_belongs_to_many :books
 end

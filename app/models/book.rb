@@ -16,7 +16,8 @@ class Book < ApplicationRecord
 	validates :description, presence: true
 
 	belongs_to :category
-	has_many :comments
+	has_many :comments, dependent: :destroy
+	belongs_to :user
 	has_and_belongs_to_many :authors
 	has_many :votes
 	has_many :voters, through: :votes, source: :user

@@ -7,7 +7,7 @@ class VotesController < ApplicationController
 
   def create
 
-    @vote = @book.votes.new
+        @vote = @book.votes.new
         @vote.rating = params[:vote][:rating]
         @vote.user = current_user
 
