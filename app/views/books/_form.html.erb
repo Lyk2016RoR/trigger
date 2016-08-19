@@ -1,26 +1,32 @@
-<%= form_for @book do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name, placeholder: 'Name of the book', class: "form-control input-sm" %><br>
-  <br>
-  <%= f.label :description %>
-  <br>
-  <%= f.text_area :description, placeholder: "Description", rows: 10 %><br>
-  <br>
-  <%= f.label :published_at %>
-  <br>
-  <%= f.date_select :published_at, placeholder: 'date' %><br>
-  <br>
-  <%= f.label :publisher %>
-  <br>
-  <%= f.text_field :publisher, placeholder: 'Publisher' %><br>
-  <br>
-  <%= f.select :category_id, @categories %>
-  <br>
-  <br>
-  <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) %>
-   <br />
-   <br />
-   <br />
+ <h2> Add A New Book</h2>
+<div role="form">
+    <%= form_for @book do |b| %>
 
-  <%= f.submit 'Add' %>
-<% end %>
+      <div class="form-group">
+          <%= b.label :name %><br>
+          <%= b.text_field :name , class:'form-control' %>
+        </div>
+        <div class="form-group">
+            <%= b.label :description %><br>
+            <%= b.text_area :description , class:'form-control' %>
+         </div>
+       <div class="form-group">
+         <%= b.label :published_at %><br>
+         <%= b.text_field :published_at , class:'form-control' %>
+       </div>
+         <div class="form-group">
+             <%= b.label :publisher %><br>
+             <%= b.text_field :publisher , class:'form-control' %>
+           </div>
+      <div class="form-group">
+        <%= b.select :category_id, @categories %>
+      </div>
+       
+     <br> <br>
+
+         <div class="form-group">
+           <%= b.submit :Save , class:'btn btn-primary'%>
+         </div>
+    <% end %>
+</div>
+  <%= link_to "Go Back to Booklist", books_path%>

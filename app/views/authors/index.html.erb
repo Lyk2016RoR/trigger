@@ -1,11 +1,13 @@
-<% @author.each do |author| %>
-    <b>ID:</b><%= author.id %>
-    <b>Name: </b><%= link_to author.name, author_path(author) %>
-    <b>Surname: </b><%= author.surname %>
-    <b>Profile: </b><%= author.profile %>
+<h1>Authors</h1><br>
 
+<% @authors.each do |a|%>
+    Name: <a href="<%= author_path(a.id)%>"><%= a.name%></a><br>
+    Surname: <a href="<%= author_path(a.id)%>"><%= a.surname%></a><br>
+    Profile: <%= a.profile %><br>
+    <%= link_to "Edit Author", edit_author_path(a)%>
+    <%= link_to "Delete Author", author_path(a), method: :delete %><br><br>
 
-
-    <br><br>
 
 <% end %>
+
+<%= link_to "Add New Author", new_author_path %>

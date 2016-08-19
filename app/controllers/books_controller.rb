@@ -17,15 +17,10 @@ class BooksController < ApplicationController
 
 	end
 	def show
-		if current_user
-			if @book.votes.where(user_id:current_user.id ).any?
-				@vote = @book.votes.where(user_id: current_user.id).first
-			else
-				@vote = @book.votes.build
-			end
-		end
+		set_book
 	end
 	def edit
+		set_book
 		load_form_data
 	end
 	def update
@@ -41,7 +36,7 @@ class BooksController < ApplicationController
 	end
 	
 	def create
-		@book = current_user.books.new(book_params)
+		@book = Book.new(book_params)
 
 		if @book.save
 			flash[:success] = 'İşlem başarıyla tamalandı.'
@@ -55,6 +50,7 @@ class BooksController < ApplicationController
 
 
 	def destroy
+		set_book
 		@book.destroy
 		redirect_to books_path, notice: "The book is deleted! "
 	end

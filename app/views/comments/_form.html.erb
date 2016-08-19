@@ -1,13 +1,32 @@
-<% if current_user.present? %>
-      <div class="panel panel-primary">
-      <div class="panel-heading">
-        Send a new comment
-      </div>
-      <div class="panel-body">
-        <%= form_for [@book, @book.comments.build] do |f| %>
-              <%= f.text_area :body, rows: 5 %><br>
-             <%= f.submit 'Send' %>
-            <% end %>
-      </div>
-    </div>
-    <% end %>
+<% unless @book.nil? %>
+  <% @book.comments.reject { |comment| comment.id.nil? }.each do |comment| %>
+    <p>
+      <strong>Comment:</strong>
+      <%= comment.body %>
+
+          <%= link_to 'Destroy Comment', comment,
+                      method: :delete %></p>
+
+  <% end %>
+<% end %>
+
+    <h2>Add a comment:</h2>
+    <div class="panel-body">
+      <%= form_for Comment.new do |f| %>
+
+
+          <p>
+            <%= f.label :Comment  %><br>
+            <%= f.text_field :body, size: 70%>
+          </p>
+
+          <% unless @book.nil? %>
+              <%= f.hidden_field :book_id, value: @book.id %>
+          <% end %>
+
+          <p>
+            <%= f.submit %>
+          </p>
+
+<% end %>
+</div>

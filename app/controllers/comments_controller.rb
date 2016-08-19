@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @book.comments.new(comment_params)
-    @comment.user = current_user
 
     if @comment.save
 
@@ -18,6 +17,7 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    set_comment
     @comment.destroy
     redirect_to @book, notice: "Comment is deleted."
   end
@@ -26,10 +26,6 @@ class CommentsController < ApplicationController
 
   def set_comment 
     @comment = Comment.find(params[:id])
-  end
-
-  def authorize_user!
-    redirect_to @book, notice: "Not authorized!" unless @comment.user_id == current_user.id
   end
 
   def comment_params

@@ -6,26 +6,22 @@ class AuthorsController < ApplicationController
 
   end
   def index
-    @author=Author.all
+    @authors=Author.all
   end
   def show
-
+    select_author
   end
   def edit
-    if @author.update(authors_params)
-  redirect_to author_path(@author)
-  else
-
-    render :edit
+    select_author
   end
 
 
-  end
+  
   def update
 
   end
   def create
-    @author =authors.new(author_params)
+    @author =Author.new(author_params)
     if @author.save
       flash[:success]='İşlem başarıyla tamamlandı!'
       redirect_to author_path(@author)
@@ -42,7 +38,7 @@ class AuthorsController < ApplicationController
 
 
   private
-  def set_author
+  def select_author
     @author=Author.find(params[:id])
   end
 

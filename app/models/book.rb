@@ -17,7 +17,7 @@ class Book < ApplicationRecord
 
 	belongs_to :category
 	has_many :comments
-	belongs_to :author
+	has_and_belongs_to_many :authors
 	has_many :votes
 	has_many :voters, through: :votes, source: :user
 	has_and_belongs_to_many :tags
@@ -26,7 +26,7 @@ class Book < ApplicationRecord
 		rating = votes.average(:rating)
 		rating ? rating.to_s : "0.0"
 	end
-	
+
 	def self.random_books
 		self.order("RANDOM()").all
 	end

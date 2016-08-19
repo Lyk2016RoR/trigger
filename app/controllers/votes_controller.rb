@@ -20,9 +20,9 @@ class VotesController < ApplicationController
 
   def update
     if @vote.update(rating: params[:vote][:rating])
-      redirect_to @idea, notice: "Vote was saved."
+      redirect_to @book, notice: "Vote was saved."
     else
-      redirect_to @idea, notice: "Vote is not valid."
+      redirect_to @book, notice: "Vote is not valid."
     end
   end
 
